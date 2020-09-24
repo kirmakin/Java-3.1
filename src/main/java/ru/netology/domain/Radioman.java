@@ -3,11 +3,11 @@ package ru.netology.domain;
 public class Radioman {
 
     private int currentVolume = 5;
-    int maxVolume = 10;
-    int minVolume = 0;
+    private int maxVolume = 10;
+    private int minVolume = 0;
     private int currentRadioStation = 5;
-    int maxRadioStation = 9;
-    int minRadioStation = 0;
+    private int maxRadioStation = 9;
+    private int minRadioStation = 0;
 
 
     public int changeTheStationByRemoteControl(int intendedStation) {
@@ -57,15 +57,26 @@ public class Radioman {
     }
 
     public void setCurrentVolume(int currentVolume) {
-        this.currentVolume = currentVolume;
+            if(currentVolume > maxVolume){
+                return;
+            }
+            if(currentVolume < minVolume){
+                return;
+            }
+            this.currentVolume = currentVolume;
     }
-
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
 
     public void setCurrentRadioStation(int currentRadioStation) {
-        this.currentRadioStation = currentRadioStation;
+            if(currentRadioStation > maxRadioStation){
+                return;
+            }
+            if(currentRadioStation < minRadioStation){
+                return;
+            }
+            this.currentRadioStation = currentRadioStation;
     }
 }
