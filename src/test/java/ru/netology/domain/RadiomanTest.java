@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RadiomanTest {
-    Radioman radio = new Radioman(15);
+    Radioman radio = new Radioman(5,100, 0, 5, 15, 0);
 
     @Test
     void shouldChangeTheStationByButtonNextIfCurrentIsMax() {
