@@ -2,25 +2,36 @@ package ru.netology.domain;
 
 public class Radioman {
 
-    private int currentVolume = 5;
-    private int maxVolume = 10;
+    private int currentVolume;
+    private int maxVolume = 100;
     private int minVolume = 0;
-    private int currentRadioStation = 5;
+    private int currentRadioStation;
     private int maxRadioStation = 9;
     private int minRadioStation = 0;
 
+    public Radioman(int maxRadioStation) {
+        this.maxRadioStation = maxRadioStation;
+    }
+    public Radioman(){
 
-    public int changeTheStationByRemoteControl(int intendedStation) {
-        if (intendedStation <= 9 && intendedStation >= 0) {
-            currentRadioStation = intendedStation;
-        }
-        return currentRadioStation;
     }
 
+    public int getCurrentRadioStation() {
+        return currentRadioStation;
+    }
+    public void setCurrentRadioStation(int currentRadioStation) {
+        if (currentRadioStation > maxRadioStation) {
+            return;
+        }
+        if (currentRadioStation < minRadioStation) {
+            return;
+        }
+        this.currentRadioStation = currentRadioStation;
+    }
 
     public void changeTheStationByNextButton() {
         if (currentRadioStation == maxRadioStation) {
-            currentRadioStation = 0;
+            currentRadioStation = minRadioStation;
         } else {
             currentRadioStation += 1;
         }
@@ -28,9 +39,9 @@ public class Radioman {
 
     public void changeTheStationByPrevButton() {
         if (currentRadioStation == minRadioStation) {
-            currentRadioStation = 9;
+            currentRadioStation = maxRadioStation;
         } else {
-            currentRadioStation -= 1;
+            currentRadioStation--;
         }
     }
 
@@ -64,19 +75,5 @@ public class Radioman {
                 return;
             }
             this.currentVolume = currentVolume;
-    }
-
-    public int getCurrentRadioStation() {
-        return currentRadioStation;
-    }
-
-    public void setCurrentRadioStation(int currentRadioStation) {
-            if(currentRadioStation > maxRadioStation){
-                return;
-            }
-            if(currentRadioStation < minRadioStation){
-                return;
-            }
-            this.currentRadioStation = currentRadioStation;
     }
 }
