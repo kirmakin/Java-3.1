@@ -4,76 +4,61 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RadioTest {
+class RadiomanTest {
+    Radioman radio = new Radioman(5,100, 0, 5, 15, 0);
 
     @Test
-    void shouldChangeTheStationByRemoteControl() {
-        Radioman radio = new Radioman();
-        assertEquals(8, radio.changeTheStationByRemoteControl(8));
-    }
-
-    @Test
-    void shouldChangeTheStationByRemoteControlIfNumberIsWrong() {
-        Radioman radio = new Radioman();
-        assertEquals(5, radio.changeTheStationByRemoteControl(12));
-    }
-
-    @Test
-    void shouldChangeTheStationByButtonNextIfCurrentIsNine() {
-        Radioman radio = new Radioman();
-        radio.setCurrentRadioStation(9);
+    void shouldChangeTheStationByButtonNextIfCurrentIsMax() {
+        radio.setCurrentRadioStation(15);
         radio.changeTheStationByNextButton();
         assertEquals(0, radio.getCurrentRadioStation());
     }
 
     @Test
     void shouldChangeTheStationByButtonNext() {
-        Radioman radio = new Radioman();
+        radio.setCurrentRadioStation(5);
         radio.changeTheStationByNextButton();
         assertEquals(6, radio.getCurrentRadioStation());
     }
 
     @Test
     void shouldChangeTheStationByPrevButtonIfCurrentIsNull() {
-        Radioman radio = new Radioman();
         radio.setCurrentRadioStation(0);
         radio.changeTheStationByPrevButton();
-        assertEquals(9, radio.getCurrentRadioStation());
+        assertEquals(15, radio.getCurrentRadioStation());
     }
 
     @Test
     void shouldChangeTheStationByPrevButton() {
-        Radioman radio = new Radioman();
+        radio.setCurrentRadioStation(5);
         radio.changeTheStationByPrevButton();
         assertEquals(4, radio.getCurrentRadioStation());
     }
 
     @Test
     void shouldIncreaseVolumeUnderMinimum() {
-        Radioman radio = new Radioman();
+        radio.setCurrentVolume(50);
         radio.increaseVolume();
-        assertEquals(6, radio.getCurrentVolume());
+        assertEquals(51, radio.getCurrentVolume());
     }
 
     @Test
     void shouldIncreaseVolumeAboveMinimum() {
-        Radioman radio = new Radioman();
-        radio.setCurrentVolume(10);
-        shouldDecreaseVolume();
-        assertEquals(10, radio.getCurrentVolume());
+        radio.setCurrentVolume(100);
+        radio.increaseVolume();
+        assertEquals(100, radio.getCurrentVolume());
     }
 
     @Test
     void shouldDecreaseVolume() {
-        Radioman radio = new Radioman();
+        radio.setCurrentVolume(50);
         radio.decreaseVolume();
-        assertEquals(4, radio.getCurrentVolume());
+        assertEquals(49, radio.getCurrentVolume());
     }
 
 
     @Test
     void shouldDecreaseVolumeIfMin() {
-        Radioman radio = new Radioman();
         radio.setCurrentVolume(0);
         radio.decreaseVolume();
         assertEquals(0, radio.getCurrentVolume());
